@@ -1,0 +1,15 @@
+.Arrow {
+  width: 1vw;
+  height: 1vh;
+  border-top: 0.1em solid red;
+  transform: rotate(160deg) translate(-400px) translateY(-30px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 50%;
+  text-align: center;
+  margin: 10% 0;
+  min-height: 80px;
+  align-items: center;
+}

@@ -1,0 +1,28 @@
+{
+  "name": "contentkingdom",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "server": "nodemon index.js",
+    "client": "npm run start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Anthonygen1/ContentKingdom.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "concurrently": "^4.1.0",
+    "express": "^4.16.4",
+    "node-sass": "^4.11.0",
+    "nodemon": "^1.18.9"
+  },
+  "bugs": {
+    "url": "https://github.com/Anthonygen1/ContentKingdom/issues"
+  },
+  "homepage": "https://github.com/Anthonygen1/ContentKingdom#readme"
+}

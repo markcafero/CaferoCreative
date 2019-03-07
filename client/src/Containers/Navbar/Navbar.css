@@ -1,0 +1,26 @@
+.Navbar {
+  height: 150px;
+  width: 100vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  color: white;
+}
+
+.Logo {
+  width: 100px;
+  padding-left: 0.8em;
+}
+
+.NavbarMiddle {
+  width: 50px;
+  background-color: red;
+}
+
+.NavBarItem a {
+  color: white;
+  padding-right: 7em;
+  text-decoration: none;
+  list-style: none;
+  font-size: 0.7em;
+}

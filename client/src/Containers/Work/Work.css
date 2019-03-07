@@ -1,0 +1,13 @@
+.Work {
+  text-align: center;
+  padding-top: 50px;
+}
+
+.Reel {
+  padding-bottom: 2em;
+}
+
+img {
+  display: inline-block;
+  margin: 0;
+}

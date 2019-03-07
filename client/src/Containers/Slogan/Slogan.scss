@@ -1,0 +1,174 @@
+html {
+  font-size: 2vw;
+}
+
+.Stars {
+  position: absolute;
+  z-index: 1000;
+}
+
+.Slogan {
+  font-size: 2em;
+  text-align: right;
+  margin: 0;
+  height: 100vh;
+}
+
+h1 {
+  margin: 0;
+  padding-top: 100px;
+  padding-right: 40px;
+  padding-bottom: 200px;
+  padding-left: 20px;
+  z-index: 1001;
+}
+
+h2 {
+  font-size: 0.4em;
+  text-align: center;
+}
+
+.SeeOurWork {
+  padding-top: 100px;
+}
+
+svg {
+  width: 90vmin;
+  height: 90vmin;
+  margin: auto;
+
+  * {
+    fill: none;
+    stroke: white;
+    stroke-width: 0.125vmin;
+    vector-effect: non-scaling-stroke;
+  }
+}
+
+polygon {
+  stroke-width: 0.5vmin;
+  transform-origin: 50% 50%;
+  animation: spin 10s linear infinite;
+}
+
+.poly1 {
+  stroke: #702d7c;
+  animation-duration: 10s;
+}
+.poly2 {
+  stroke: #8ec33b;
+  animation-duration: 9.25s;
+}
+.poly3 {
+  stroke: #09a4dc;
+  animation-duration: 7.825s;
+}
+.poly4 {
+  stroke: #e72d96;
+  animation-duration: 6.25s;
+}
+.poly5 {
+  stroke: #fcc018;
+  animation-duration: 5.0625s;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+// Stars!
+$colors: (
+  "main": #00a39b,
+  "main-dark": darken(#00a39b, 15%),
+  "comp": #cf0079,
+  "comp-dark": darken(#cf0079, 15%),
+  "glow": #ffd200,
+  "glow-dark": darken(#ffd200, 15%),
+  "z": #e6e6e6,
+  "m": #686868,
+  "a": #161616
+);
+
+/** SCSS function to return a colour from a list, in hexidecimal or rgba value
+ * @param name: key used in the $colors list associated with a hexadecimal colour
+ * @param opacity: opacity value [0, 100] to be used by the rgba() colour; hex (default) to get the solid colour in hexadecimal value
+**/
+@function color($name, $opacity: hex) {
+  @if map-has-key($colors, $name) {
+    // If the colour exists in the list…
+    @if $opacity != hex {
+      // …return RGBA value
+      $opacity-decimal: $opacity/100;
+      @return rgba(map-get($colors, $name), $opacity-decimal);
+    } @else {
+      // …returns hexidecimal value
+      @return map-get($colors, $name);
+    }
+  } @else {
+    // Return a CSS colour keyword in case it exists
+    @return unquote($name);
+  }
+}
+
+body {
+  position: relative;
+
+  background-color: color("a");
+  background-image: linear-gradient(
+    45deg,
+    mix(color("main"), color("a"), 6.25%),
+    mix(color("comp"), color("a"), 12.5%)
+  );
+
+  &::before {
+    // Starfield
+    $box-shadow: ();
+    $box-shadow-color-start: color("z", 75);
+    $box-shadow-color-end: color("z", 50);
+    $box-shadow-steps: 128; // Number of stars
+
+    @for $i from 1 through $box-shadow-steps {
+      // Return a value between -.5 and .5
+      $x: random() - 0.5;
+      $y: random() - 0.5;
+
+      $i-color: mix(
+        $box-shadow-color-start,
+        $box-shadow-color-end,
+        (random() * 100%)
+      );
+      $box-shadow: append(
+        $box-shadow,
+        unquote("#{$x * 142vmax} #{$y * 142vmax} 0 #{$i-color}"),
+        comma
+      );
+    }
+
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+
+    width: 2px;
+    height: 2px;
+    margin: auto;
+
+    border-radius: 50%;
+    box-shadow: $box-shadow;
+    animation: spin 20s linear infinite;
+  }
+}
+
+// Resets & stuff
+* {
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  margin: 0;
+}
